@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Student Payment Portal - Puthichitra</title>
+    <title>Monthly Fee Portal - Puthichitra</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
@@ -48,11 +48,11 @@
         <header class="liquid-header rounded-3xl p-3.5 shadow-sm flex items-center justify-between">
             <div class="flex items-center space-x-2.5">
                 <div class="w-9 h-9 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center text-xs border border-indigo-100 shadow-inner">
-                    <i class="fa-solid fa-palette"></i>
+                    <i class="fa-solid fa-receipt"></i>
                 </div>
                 <div>
-                    <h1 class="text-xs font-black tracking-tight text-slate-900 uppercase">Puthichitra Portal</h1>
-                    <p class="text-[9px] text-slate-400 font-medium">Fine Arts & Crafts</p>
+                    <h1 class="text-xs font-black tracking-tight text-slate-900 uppercase">Monthly Fee Portal</h1>
+                    <p class="text-[9px] text-slate-400 font-medium">Puthichitra Fine Arts</p>
                 </div>
             </div>
             <div class="flex items-center gap-1.5">
@@ -143,8 +143,8 @@
                         <p class="text-xs font-black text-slate-800 truncate" id="displayClass">-</p>
                     </div>
                     <div class="liquid-card rounded-2xl p-3 space-y-1">
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Institution</p>
-                        <p class="text-xs font-black text-slate-800 truncate" id="displaySchool">-</p>
+                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Admission Date</p>
+                        <p class="text-xs font-black text-slate-800 truncate" id="displayAdmissionDate">-</p>
                     </div>
                 </div>
 
@@ -337,7 +337,7 @@
             </div>
         </div>
 
-        <!-- SCREEN 6: ADMIN PANEL -->
+        <!-- SCREEN 6: ADMIN PANEL (2 Separate Sections: Accounts & Message Section) -->
         <div id="screenAdmin" class="hidden space-y-3 animate-fade-in flex-grow flex flex-col justify-between">
             <div class="space-y-3">
                 <div class="liquid-card rounded-2xl p-3.5 shadow-sm flex justify-between items-center text-xs">
@@ -347,7 +347,7 @@
                         </div>
                         <div>
                             <p class="font-black text-slate-800 text-xs">Admin Dashboard</p>
-                            <p class="text-[9px] text-slate-400">Collections & Reminders</p>
+                            <p class="text-[9px] text-slate-400">Accounts &amp; WhatsApp Reminders</p>
                         </div>
                     </div>
                     <button onclick="logoutStudent()" class="bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1.5 rounded-xl font-bold text-[10px] transition-all">
@@ -355,34 +355,29 @@
                     </button>
                 </div>
 
-                <!-- Collection Metrics Grid -->
-                <div class="grid grid-cols-2 gap-2.5">
-                    <div class="liquid-card rounded-2xl p-3.5 space-y-1 bg-gradient-to-br from-emerald-50/50 to-white border border-emerald-100">
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Total Collection</p>
-                        <p class="text-base font-black text-emerald-600" id="adminTotalCollection">₹0</p>
-                    </div>
-                    <div class="liquid-card rounded-2xl p-3.5 space-y-1 bg-gradient-to-br from-indigo-50/50 to-white border border-indigo-100">
-                        <p class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Total Transactions</p>
-                        <p class="text-base font-black text-indigo-600" id="adminTotalTransactions">0</p>
-                    </div>
-                </div>
-
-                <!-- Monthly Collection Breakdown Box -->
-                <div class="space-y-1.5">
-                    <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500 px-1">Month-Wise Collection Summary</span>
-                    <div id="adminMonthlyBreakdown" class="liquid-card rounded-2xl p-3 space-y-2 max-h-[22vh] overflow-y-auto border border-slate-200/60 text-xs">
-                        <!-- Populated Dynamically -->
-                    </div>
-                </div>
-
-                <!-- WhatsApp Quick Reminder Section -->
-                <div class="space-y-1.5">
+                <!-- SECTION 1: ACCOUNTS SECTION -->
+                <div class="space-y-2">
                     <div class="flex justify-between items-center px-1">
-                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-500">Student WhatsApp Reminders</span>
-                        <span class="text-[9px] text-indigo-600 font-bold" id="studentCountBadge">0 Students Loaded</span>
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-600 flex items-center gap-1">
+                            <i class="fa-solid fa-wallet"></i> 1. Accounts Section (Student-Wise Transactions)
+                        </span>
+                        <span class="text-[9px] font-bold text-slate-500" id="adminTotalColBadge">₹0 Total</span>
                     </div>
-                    <div id="adminStudentListContainer" class="liquid-card rounded-2xl p-3 space-y-2 max-h-[26vh] overflow-y-auto border border-slate-200/60">
-                        <!-- Student list with WhatsApp trigger button -->
+                    <div id="adminAccountsContainer" class="liquid-card rounded-2xl p-3 space-y-2.5 max-h-[25vh] overflow-y-auto border border-indigo-100">
+                        <!-- Student-wise transactions loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- SECTION 2: MESSAGE SECTION -->
+                <div class="space-y-2">
+                    <div class="flex justify-between items-center px-1">
+                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-emerald-600 flex items-center gap-1">
+                            <i class="fa-solid fa-comments"></i> 2. Message Section (WhatsApp Reminder)
+                        </span>
+                        <span class="text-[9px] font-bold text-slate-500" id="adminStudentCountBadge">0 Students</span>
+                    </div>
+                    <div id="adminMessageContainer" class="liquid-card rounded-2xl p-3 space-y-2.5 max-h-[30vh] overflow-y-auto border border-emerald-100">
+                        <!-- Student reminder cards loaded dynamically -->
                     </div>
                 </div>
             </div>
@@ -394,7 +389,7 @@
 
         <!-- FOOTER -->
         <footer class="liquid-header rounded-2xl py-2.5 px-4 text-center text-[10px] text-slate-400 shadow-sm">
-            Student Payment Portal • Puthichitra School of Fine Arts & Crafts
+            Monthly Fee Portal • Puthichitra School of Fine Arts &amp; Crafts
         </footer>
 
     </div>
@@ -423,7 +418,7 @@
     <!-- APPLICATION SCRIPT -->
     <script>
         const SHEET1_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTHL-m6RcQn1X8M9jhSby18WccZ3gUldPJI8dL3vozG4CK9ldRlH-QCZBp91XLRZJxx9AQ-k7b2R3wh/pub?gid=0&single=true&output=csv";
-        const SHEET2_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTHL-m6RcQn1X8M9jhSby18WccZ3gUldPJI8dL3vozG4CK9ldRlH-QCZBp91XLRZJxx9AQ-k7b2R3wh/pub?gid=1175661573&single=true&output=csv"; 
+        const SHEET2_CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vTHL-m6RcQn1X8M9jhSby18WccZ3gUldPJI8dL3vozG4CK9ldRlH-QCZBp91XLRZJxx9AQ-k7b2R3wh/pub?gid=1840546824&single=true&output=csv"; 
         const APPS_SCRIPT_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzGCwkDE_joRQJxgc_hs8prZzZiQNDtEoUXBbkkF3oGAM3M8FRE68n-PmeiA58DrmEzfw/exec";
 
         const SESSION_MONTHS = [
@@ -513,12 +508,13 @@
             studentsListArray = [];
 
             rows.forEach(r => {
-                let sName = r[3] || "";
+                let admissionTimestamp = r[0] || ""; 
                 let institution = (r[2] || "").trim();
-                let appearingClass = r[16] || "N/A";
+                let sName = r[3] || "";
                 let mobile = r[8] || "";
-                let monthlyFee = parseFloat(r[23]) || 500; 
+                let appearingClass = r[16] || "N/A";
                 let photoUrl = r[17] || "";
+                let monthlyFee = parseFloat(r[23]) || 500; 
 
                 if (institution === "Puthichitra School of Fine Arts & Crafts" && sName) {
                     let obj = {
@@ -527,7 +523,8 @@
                         class: appearingClass,
                         mobile: mobile,
                         monthlyFee: monthlyFee,
-                        photoUrl: photoUrl
+                        photoUrl: photoUrl,
+                        admissionDate: admissionTimestamp
                     };
                     studentsDataMap[sName.toLowerCase()] = obj;
                     studentsListArray.push(obj);
@@ -624,7 +621,10 @@
             let studentName = selectedStudentObj.name;
             document.getElementById('displayStudentName').innerText = studentName;
             document.getElementById('displayClass').innerText = selectedStudentObj.class;
-            document.getElementById('displaySchool').innerText = selectedStudentObj.institution;
+            
+            let rawAdmissionStr = selectedStudentObj.admissionDate || "N/A";
+            let displayAdmDate = rawAdmissionStr.includes(' ') ? rawAdmissionStr.split(' ')[0] : rawAdmissionStr;
+            document.getElementById('displayAdmissionDate').innerText = displayAdmDate;
             document.getElementById('displayMonthlyFee').innerText = `₹${selectedStudentObj.monthlyFee}`;
 
             let photoImg = document.getElementById('displayStudentPhoto');
@@ -654,6 +654,11 @@
                 }
             });
 
+            let admissionDateObj = new Date(rawAdmissionStr);
+            if (isNaN(admissionDateObj.getTime())) {
+                admissionDateObj = new Date(2026, 3, 1); 
+            }
+
             let currentDate = new Date(); 
             let currentMonthIdx = currentDate.getMonth(); 
             let currentYearNum = currentDate.getFullYear(); 
@@ -667,9 +672,10 @@
                 let monthLookupKey = mObj.name.toLowerCase();
 
                 let mObjDateCheck = new Date(`${mObj.name} 1, ${mObj.year}`);
-                let isBeforeCurrentMonth = mObjDateCheck <= new Date(currentYearNum, currentMonthIdx, 1);
+                let isAfterAdmission = mObjDateCheck >= new Date(admissionDateObj.getFullYear(), admissionDateObj.getMonth(), 1);
+                let isUpToCurrentMonth = mObjDateCheck <= new Date(currentYearNum, currentMonthIdx, 1);
 
-                if (!isBeforeCurrentMonth) return;
+                if (!isAfterAdmission || !isUpToCurrentMonth) return;
 
                 let isPaid = paidMonthsMap.has(monthLookupKey) || paidMonthsMap.has(monthLabel.toLowerCase());
                 let paidDateStr = isPaid ? (paidMonthsMap.get(monthLookupKey) || paidMonthsMap.get(monthLabel.toLowerCase())) : "";
@@ -997,59 +1003,150 @@
             }
         }
 
-        function loadAdminDashboard() {
-            let totalCol = 0;
-            let monthlyMap = {};
-
+        function calculateStudentPendingDetails(st) {
+            let studentName = st.name;
+            let rawAdmissionStr = st.admissionDate || "N/A";
+            
+            let paidMonthsMap = new Map();
             submittedRecordsList.forEach(rec => {
-                totalCol += rec.amount;
-                let monthKey = rec.timestamp ? rec.timestamp.substring(0, 7) : "Recent";
-                monthlyMap[monthKey] = (monthlyMap[monthKey] || 0) + rec.amount;
+                if (rec.studentName.toLowerCase() === studentName.toLowerCase()) {
+                    let mList = rec.months.split(',').map(m => m.trim());
+                    mList.forEach(m => {
+                        paidMonthsMap.set(m.toLowerCase(), true);
+                    });
+                }
             });
 
-            document.getElementById('adminTotalCollection').innerText = `₹${totalCol}`;
-            document.getElementById('adminTotalTransactions').innerText = submittedRecordsList.length;
-
-            let breakdownContainer = document.getElementById('adminMonthlyBreakdown');
-            breakdownContainer.innerHTML = '';
-            let sortedMonths = Object.keys(monthlyMap).sort().reverse();
-            
-            if (sortedMonths.length === 0) {
-                breakdownContainer.innerHTML = `<p class="text-slate-400 text-center py-2">No collection records found yet.</p>`;
-            } else {
-                sortedMonths.forEach(m => {
-                    breakdownContainer.innerHTML += `
-                        <div class="flex justify-between items-center p-2 bg-slate-50 rounded-xl border border-slate-100 font-semibold">
-                            <span class="text-slate-600">${m}</span>
-                            <span class="text-emerald-600 font-bold">₹${monthlyMap[m]}</span>
-                        </div>
-                    `;
-                });
+            let admissionDateObj = new Date(rawAdmissionStr);
+            if (isNaN(admissionDateObj.getTime())) {
+                admissionDateObj = new Date(2026, 3, 1);
             }
 
-            let studentListContainer = document.getElementById('adminStudentListContainer');
-            studentListContainer.innerHTML = '';
-            document.getElementById('studentCountBadge').innerText = `${studentsListArray.length} Students`;
+            let currentDate = new Date(); 
+            let currentMonthIdx = currentDate.getMonth(); 
+            let currentYearNum = currentDate.getFullYear(); 
+
+            let pendingList = [];
+
+            SESSION_MONTHS.forEach(mObj => {
+                let monthLabel = mObj.name;
+                let fullMonthLabel = `${mObj.name} ${mObj.year}`;
+                let monthLookupKey = mObj.name.toLowerCase();
+
+                let mObjDateCheck = new Date(`${mObj.name} 1, ${mObj.year}`);
+                let isAfterAdmission = mObjDateCheck >= new Date(admissionDateObj.getFullYear(), admissionDateObj.getMonth(), 1);
+                let isUpToCurrentMonth = mObjDateCheck <= new Date(currentYearNum, currentMonthIdx, 1);
+
+                if (!isAfterAdmission || !isUpToCurrentMonth) return;
+
+                let isPaid = paidMonthsMap.has(monthLookupKey) || paidMonthsMap.has(fullMonthLabel.toLowerCase());
+                if (!isPaid) {
+                    pendingList.push(monthLabel);
+                }
+            });
+
+            let totalDue = pendingList.length * st.monthlyFee;
+            return { pendingList, totalDue };
+        }
+
+        function loadAdminDashboard() {
+            // 1. ACCOUNTS SECTION: Student-wise list of all transactions
+            let accountsContainer = document.getElementById('adminAccountsContainer');
+            accountsContainer.innerHTML = '';
+            
+            let totalColSum = 0;
+            submittedRecordsList.forEach(rec => { totalColSum += rec.amount; });
+            document.getElementById('adminTotalColBadge').innerText = `₹${totalColSum} Total`;
+
+            if (submittedRecordsList.length === 0) {
+                accountsContainer.innerHTML = `<p class="text-slate-400 text-center py-2 text-xs">No transaction records found yet.</p>`;
+            } else {
+                // Group by student
+                let studentTxMap = {};
+                submittedRecordsList.forEach(rec => {
+                    let key = rec.studentName.toLowerCase();
+                    if (!studentTxMap[key]) {
+                        studentTxMap[key] = { name: rec.studentName, class: rec.class, transactions: [] };
+                    }
+                    studentTxMap[key].transactions.push(rec);
+                });
+
+                Object.values(studentTxMap.forEach ? Object.values(studentTxMap) : Object.keys(studentTxMap)).forEach(item => {
+                    // Fallback iteration
+                });
+
+                for (let key in studentTxMap) {
+                    let group = studentTxMap[key];
+                    let studentTotal = group.transactions.reduce((acc, t) => acc + t.amount, 0);
+
+                    let txRowsHtml = '';
+                    group.transactions.forEach(t => {
+                        let shortDate = t.timestamp ? t.timestamp.split(' ')[0] : '-';
+                        txRowsHtml += `
+                            <div class="flex justify-between items-center py-1 border-b border-slate-100 last:border-0 text-[11px]">
+                                <div>
+                                    <span class="font-bold text-slate-700">${t.months}</span>
+                                    <span class="text-[9px] text-slate-400 ml-1">(${shortDate})</span>
+                                </div>
+                                <span class="font-bold text-emerald-600">₹${t.amount}</span>
+                            </div>
+                        `;
+                    });
+
+                    accountsContainer.innerHTML += `
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200/70 space-y-1">
+                            <div class="flex justify-between items-center border-b border-slate-200 pb-1">
+                                <span class="font-black text-xs text-slate-900">${group.name} <span class="text-[9px] font-normal text-slate-500">(${group.class})</span></span>
+                                <span class="text-xs font-black text-indigo-600">Total: ₹${studentTotal}</span>
+                            </div>
+                            <div class="space-y-0.5 pt-0.5">
+                                ${txRowsHtml}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            // 2. MESSAGE SECTION: Student reminder list with short, sharp WhatsApp links
+            let messageContainer = document.getElementById('adminMessageContainer');
+            messageContainer.innerHTML = '';
+            document.getElementById('adminStudentCountBadge').innerText = `${studentsListArray.length} Students`;
 
             if (studentsListArray.length === 0) {
-                studentListContainer.innerHTML = `<p class="text-slate-400 text-center py-2">No student records loaded.</p>`;
+                messageContainer.innerHTML = `<p class="text-slate-400 text-center py-2 text-xs">No student records loaded.</p>`;
             } else {
                 studentsListArray.forEach(st => {
                     let cleanPhone = st.mobile ? st.mobile.replace(/\D/g, '') : '';
                     if (cleanPhone.length === 10) cleanPhone = "91" + cleanPhone;
 
-                    let reminderText = encodeURIComponent(`Dear ${st.name}, this is a gentle reminder from Puthichitra School of Fine Arts & Crafts regarding your pending monthly fees. Please pay securely via the student portal. Thank you!`);
-                    let whatsappLink = cleanPhone ? `https://wa.me/${cleanPhone}?text=${reminderText}` : `#`;
+                    let calc = calculateStudentPendingDetails(st);
+                    let monthsText = calc.pendingList.length > 0 ? calc.pendingList.join(', ') : "None";
+                    let totalDueAmount = calc.totalDue;
+                    let portalLink = "https://darpansukla.github.io/Monthly-Fee-Portal/";
 
-                    studentListContainer.innerHTML += `
-                        <div class="flex items-center justify-between p-2.5 bg-slate-50 rounded-xl border border-slate-100 text-xs">
-                            <div class="truncate max-w-[190px]">
-                                <p class="font-bold text-slate-800 truncate">${st.name}</p>
-                                <p class="text-[9px] text-slate-400">${st.class} | Ph: ${st.mobile || 'N/A'}</p>
+                    // Short and sharp message keeping requested details
+                    let msgContent = `Dear ${st.name},\nYour pending months: ${monthsText}.\nTotal Amount: ₹${totalDueAmount}.\nPlease pay here: ${portalLink}\n- Suraj Saha`;
+                    let whatsappLink = cleanPhone ? `https://wa.me/${cleanPhone}?text=${encodeURIComponent(msgContent)}` : `#`;
+
+                    let statusBadge = calc.pendingList.length > 0 
+                        ? `<span class="bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-md font-bold text-[9px]">Due: ₹${totalDueAmount} (${calc.pendingList.length} Mo)</span>`
+                        : `<span class="bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-md font-bold text-[9px]">Fully Paid</span>`;
+
+                    messageContainer.innerHTML += `
+                        <div class="p-2.5 bg-slate-50 rounded-xl border border-slate-200/70 space-y-2 text-xs">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-slate-800">${st.name}</p>
+                                    <p class="text-[9px] text-slate-400">${st.class} | Ph: ${st.mobile || 'N/A'}</p>
+                                </div>
+                                ${statusBadge}
                             </div>
-                            <a href="${whatsappLink}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold text-[10px] flex items-center gap-1 shadow-sm transition-all ${!st.mobile ? 'opacity-50 pointer-events-none' : ''}">
-                                <i class="fa-brands fa-whatsapp text-xs"></i> Remind
-                            </a>
+                            <div class="flex items-center justify-between gap-2 pt-1 border-t border-slate-200/60">
+                                <span class="text-[10px] text-slate-500 truncate max-w-[200px]">Pending: ${monthsText}</span>
+                                <a href="${whatsappLink}" target="_blank" class="bg-emerald-600 hover:bg-emerald-700 text-white px-3 py-1.5 rounded-xl font-bold text-[10px] flex items-center gap-1 shadow-sm transition-all flex-shrink-0 ${!st.mobile ? 'opacity-50 pointer-events-none' : ''}">
+                                    <i class="fa-brands fa-whatsapp text-xs"></i> Send WhatsApp
+                                </a>
+                            </div>
                         </div>
                     `;
                 });
